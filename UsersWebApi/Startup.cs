@@ -24,6 +24,7 @@ namespace UsersWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -34,7 +35,7 @@ namespace UsersWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             app.UseMvc();
         }
     }
